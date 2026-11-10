@@ -1,4 +1,5 @@
 import type { Express, Request, Response } from "express";
+
 export default function Hello(app: Express) {
   const sayHello = (_req: Request, res: Response) => {
     res.send("Life is Good!");
