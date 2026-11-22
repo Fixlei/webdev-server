@@ -16,11 +16,10 @@ export default function CourseDao(db) {
   }
 
   function createCourse(course) {
-    const newCourse = { ...course, _id: uuidv4 };
-    db.courses = [...db, newCourse];
+    const newCourse = { ...course, _id: uuidv4() };
+    db.courses = [...db.courses, newCourse];
     return newCourse;
   }
-  return { findAllCourses, findCoursesForEnrolledUser };
 
   function deleteCourse(courseId) {
     const { courses, enrollments } = db;
@@ -36,4 +35,12 @@ export default function CourseDao(db) {
     Object.assign(course, courseUpdates);
     return course;
   }
+
+  return {
+    findAllCourses,
+    findCoursesForEnrolledUser,
+    createCourse,
+    deleteCourse,
+    updateCourse,
+  };
 }

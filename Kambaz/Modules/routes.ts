@@ -9,7 +9,7 @@ export default function Moduleroutes(app, db) {
 
   const createModuleForCourse = (req, res) => {
     const { courseId } = req.params;
-    const modul = { ...req.body, course: courseId };
+    const module = { ...req.body, course: courseId };
     const newModule = dao.createModule(module);
     res.json(newModule);
   };
@@ -20,7 +20,14 @@ export default function Moduleroutes(app, db) {
     res.sendStatus(200);
   };
 
+  const updateModule = (req, res) => {
+    const { moduleId } = req.params;
+    const status = dao.updateModule(moduleId, req.body);
+    res.json(status);
+  };
+
   app.get("/api/courses/:courseId/modules", findModulesForCourse);
-  app.get("/api/courses/:courseId/modules", createModuleForCourse);
+  app.post("/api/courses/:courseId/modules", createModuleForCourse);
   app.delete("/api/modules/:moduleId", deleteModule);
+  app.put("/api/modules/:moduleId", updateModule);
 }

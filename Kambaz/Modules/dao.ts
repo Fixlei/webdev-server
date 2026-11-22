@@ -24,5 +24,5 @@ export default function ModulesDao(db) {
     return module;
   }
 
-  return { findModulesForCourse, createModule, deleteModule };
+  return { findModulesForCourse, createModule, deleteModule, updateModule };
 }
